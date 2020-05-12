@@ -72,8 +72,6 @@ const main = async (username, password) => {
   const maxFarmValue = await page.evaluate(el => el.textContent, maxFarmElement) // -> max farm
 
   const resourcesTable = new Table({
-    head: ['Resource', 'Value'],
-    colWidths: [20, 25],
     chars: { 'top': '-' , 'top-mid': '+' , 'top-left': '+' , 'top-right': '+'
          , 'bottom': '-' , 'bottom-mid': '-' , 'bottom-left': '+' , 'bottom-right': '+'
          , 'left': '|' , 'left-mid': '|' , 'mid': '-' , 'mid-mid': '-'
@@ -81,11 +79,8 @@ const main = async (username, password) => {
   });
 
   resourcesTable.push(
-    [`Wood`, `${woodValue}`],
-    [`Clay`, `${clayValue}`],
-    [`Iron`, `${ironValue}`],
-    [`Storage`, `${storageValue}`],
-    [`Farm`, `${currFarmValue}/${maxFarmValue}` ]    
+    [`Wood`, `Clay`, `Iron`, `Storage`, `Farm`],
+    [`${woodValue}`, `${clayValue}`, `${ironValue}`, `${storageValue}`, `${currFarmValue}/${maxFarmValue}` ]
   );
 
   console.log(resourcesTable.toString());
