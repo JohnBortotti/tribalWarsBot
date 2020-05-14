@@ -162,5 +162,5 @@ launchAndGetPage()
   .then((page) => {
     setInterval(() => {
       updateBuilding(page, getRandomBuilding());
-    }, delayTime * 5000); // -> 60000
+    }, delayTime * 60000);
   });
