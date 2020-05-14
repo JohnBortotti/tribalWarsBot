@@ -14,10 +14,13 @@ _______   _ _           _   ____        _
 `.magenta
 );
 
-console.log("\nCreated by: John Bortotti\n");
+console.log("\nCreated by: John Bortotti\n"); // -> please don't remove credits :)
 const username = prompt("username: ");
 const password = prompt("password: ");
 const delayTime = prompt("Delay for actions (in minutes): ");
+
+const buildingsArray = ['main', 'barracks', 'stable', 'church_f', 'smith',  // -> set all the construction wich the bot will interact
+  'place', 'market', 'wood', 'stone', 'iron', 'farm', 'storage', 'hide', 'wall']
 
 const launchAndGetPage = async () => {
   const browser = await puppeteer.launch({ headless: false });
@@ -148,12 +151,16 @@ const updateBuilding = async (instance, building) => {
   }
 };
 
+const getRandomBuilding = () => {
+  return buildingsArray[Math.floor((Math.random() * buildingsArray.length))] // -> select a random item from 'buildingsArray'
+}
+
 launchAndGetPage()
   .then((page) => login(page, username, password))
   .then((page) => showResources(page))
   .then((page) => gotoUpdatesPage(page))
   .then((page) => {
     setInterval(() => {
-      updateBuilding(page, "iron");
-    }, delayTime * 60000);
+      updateBuilding(page, getRandomBuilding());
+    }, delayTime * 5000); // -> 60000
   });
