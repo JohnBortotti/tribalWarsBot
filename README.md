@@ -1,3 +1,5 @@
+![bot](printscreen.png)
+
 # About
 Tribal Wars bot for farming updates, using Puppeteer
 
